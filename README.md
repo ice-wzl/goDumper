@@ -52,6 +52,20 @@ ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0               [vsyscall]
 ````
 - Dump files will be created in the `pwd` of the `goDumper` binary and will be named `dump.<pid>`. For example the resulting name for the above dump is `dump.1226246`
 
+## Compilation
+- Standard compilation
+````
+git clone https://github.com/ice-wzl/goDumper.git
+go build goDumper.go
+# Binary size amd64: 2.1M
+````
+- Compile smaller for embedded systems
+````
+go build -a -gcflags=all="-l -B" -ldflags="-w -s" goDumper.go
+# Binary size amd64: 1.4M
+````
+
+
 ## FAQ
 - **When conducting a memory dump with this simple script, why do certain memory sections fail?**
   - Kernel-Level Protections: Even if the memory regions have read permissions, certain kernel-level protections can prevent direct access. For instance, some memory regions (particularly those related to device files, like /dev/jiffies, or specific shared memory regions) might have restrictions that make them inaccessible to non-root users or from user space.
