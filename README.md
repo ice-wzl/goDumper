@@ -28,7 +28,7 @@ cat /proc/1226246/maps
 7675b9bd1000-7675b9bd3000 r--p 00037000 103:02 7866467                   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
 7675b9bd3000-7675b9bd5000 rw-p 00039000 103:02 7866467                   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
 7ffe9803f000-7ffe98060000 rw-p 00000000 00:00 0                          [stack]
-7ffe98081000-7ffe98085000 r--p 00000000 00:00 0                          [vvar]                                            <-- The memory region we failed to access, expected
+7ffe98081000-7ffe98085000 r--p 00000000 00:00 0                          [vvar]     <-- The memory region we failed to access, expected
 7ffe98085000-7ffe98087000 r-xp 00000000 00:00 0                          [vdso]
 ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]
 ````
@@ -38,7 +38,7 @@ ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsysca
 ````
 cat /proc/1226246/maps
 --snip--
-7ffe9803f000-7ffe98060000 rw-p 00000000 00:00 0                          [stack]          <-- Our target range to dump
+7ffe9803f000-7ffe98060000 rw-p 00000000 00:00 0                          [stack]   <-- Our target range to dump
 7ffe98081000-7ffe98085000 r--p 00000000 00:00 0                          [vvar]
 7ffe98085000-7ffe98087000 r-xp 00000000 00:00 0                          [vdso]
 ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]
