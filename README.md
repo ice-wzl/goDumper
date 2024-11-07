@@ -1,5 +1,5 @@
 # goDumper
-A simple script to dump process memory for the Linux os in addition to embedded systems like MikroTik. goDumber provides targeted dumps or full memory dumps.
+A simple script to dump process memory for the Linux os in addition to embedded systems like MikroTik. goDumper provides targeted dumps or full memory dumps.
 
 # Usage 
 - This simple script has two modes, targeted dump of a specific memory region like the process heap or stack, or full dump where goDumper will attempt to dump out the entire memory space of the process
