@@ -46,7 +46,7 @@ ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0               [vsyscall]
 - Now we can provide the memory range to goDumper. This is the memory range of the processe's stack
 ````
 ./godumper -p 1226246 -r 7ffe9803f000-7ffe98060000
-[+] GOLE started
+[+] goDumper started
 [+] Target PID: 1226246
 [+] Successful memory dump for pid: 1226246
 ````
