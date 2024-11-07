@@ -17,20 +17,20 @@ A simple script to dump process memory for the Linux os in addition to embedded 
 ````
 cat /proc/1226246/maps
 --snip--
-7675b9b64000-7675b9b72000 r--p 0001f000 103:02 7892597                   /usr/lib/x86_64-linux-gnu/libtinfo.so.6.3
-7675b9b72000-7675b9b76000 r--p 0002c000 103:02 7892597                   /usr/lib/x86_64-linux-gnu/libtinfo.so.6.3
-7675b9b76000-7675b9b77000 rw-p 00030000 103:02 7892597                   /usr/lib/x86_64-linux-gnu/libtinfo.so.6.3
-7675b9b90000-7675b9b97000 r--s 00000000 103:02 7866848                   /usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache
+7675b9b64000-7675b9b72000 r--p 0001f000 103:02 7892597                /usr/lib/x86_64-linux-gnu/libtinfo.so.6.3
+7675b9b72000-7675b9b76000 r--p 0002c000 103:02 7892597                /usr/lib/x86_64-linux-gnu/libtinfo.so.6.3
+7675b9b76000-7675b9b77000 rw-p 00030000 103:02 7892597                /usr/lib/x86_64-linux-gnu/libtinfo.so.6.3
+7675b9b90000-7675b9b97000 r--s 00000000 103:02 7866848                /usr/lib/x86_64-linux-gnu/gconv/gconv-modules.cache
 7675b9b97000-7675b9b99000 rw-p 00000000 00:00 0 
-7675b9b99000-7675b9b9b000 r--p 00000000 103:02 7866467                   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
-7675b9b9b000-7675b9bc5000 r-xp 00002000 103:02 7866467                   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
-7675b9bc5000-7675b9bd0000 r--p 0002c000 103:02 7866467                   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
-7675b9bd1000-7675b9bd3000 r--p 00037000 103:02 7866467                   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
-7675b9bd3000-7675b9bd5000 rw-p 00039000 103:02 7866467                   /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
-7ffe9803f000-7ffe98060000 rw-p 00000000 00:00 0                          [stack]
-7ffe98081000-7ffe98085000 r--p 00000000 00:00 0                          [vvar]     <-- The memory region we failed to access, expected
-7ffe98085000-7ffe98087000 r-xp 00000000 00:00 0                          [vdso]
-ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]
+7675b9b99000-7675b9b9b000 r--p 00000000 103:02 7866467                /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7675b9b9b000-7675b9bc5000 r-xp 00002000 103:02 7866467                /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7675b9bc5000-7675b9bd0000 r--p 0002c000 103:02 7866467                /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7675b9bd1000-7675b9bd3000 r--p 00037000 103:02 7866467                /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7675b9bd3000-7675b9bd5000 rw-p 00039000 103:02 7866467                /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7ffe9803f000-7ffe98060000 rw-p 00000000 00:00 0                       [stack]
+7ffe98081000-7ffe98085000 r--p 00000000 00:00 0                       [vvar]     <-- The memory region we failed to access, expected
+7ffe98085000-7ffe98087000 r-xp 00000000 00:00 0                       [vdso]
+ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0               [vsyscall]
 ````
 ## Targeted Dump
 - To conduct a targeted dump specify the target pid with `-p` and specify the range of memory with `-r` followed by the memory range.
@@ -38,10 +38,10 @@ ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsysca
 ````
 cat /proc/1226246/maps
 --snip--
-7ffe9803f000-7ffe98060000 rw-p 00000000 00:00 0                          [stack]   <-- Our target range to dump
-7ffe98081000-7ffe98085000 r--p 00000000 00:00 0                          [vvar]
-7ffe98085000-7ffe98087000 r-xp 00000000 00:00 0                          [vdso]
-ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]
+7ffe9803f000-7ffe98060000 rw-p 00000000 00:00 0                       [stack]   <-- Our target range to dump
+7ffe98081000-7ffe98085000 r--p 00000000 00:00 0                       [vvar]
+7ffe98085000-7ffe98087000 r-xp 00000000 00:00 0                       [vdso]
+ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0               [vsyscall]
 ````
 - Now we can provide the memory range to goDumper. This is the memory range of the processe's stack
 ````
