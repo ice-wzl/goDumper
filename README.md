@@ -4,12 +4,11 @@ A simple script to dump process memory for the Linux os in addition to embedded 
 # Usage 
 - This simple script has two modes, targeted dump of a specific memory region like the process heap or stack, or full dump where goDumper will attempt to dump out the entire memory space of the process
 ## Full Dump
-- Full process memory dump: use `-p <pid`
+- Full process memory dump: use `-p <pid>`
 ````
 ./godumper -p 1226246
 [+] goDumper started
 [+] Target PID: 1226246
-[!] Skipping, failed to read memory: 7ffe98081000-7ffe98085000: read /proc/1226246/mem: input/output error
 [+] Successful memory dump for pid: 1226246
 ````
 - It is common to see certain areas of memory that are not possible to dump. goDumper will simply skip over these sections and alert you that they were skipped. goDumper will provided the memory range it was unable to read allowing the user to inspect skipped areas. See the FAQ section at the bottom for some reasons certain memory regions will be inaccessible.
