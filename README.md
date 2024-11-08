@@ -59,3 +59,4 @@ ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsysca
   - File-backed Memory Regions: Some entries in the maps file refer to memory-mapped files (like libc.so or libuc++.so). Even with read permissions, accessing these might occasionally result in errors due to how file-backed memory regions are managed by the kernel.
   - Physical or Virtual Memory Boundaries: When you attempt to read across memory boundaries, especially at the end of a segment, you can encounter input/output errors. This might be happening if, for example, there’s some overlap in addresses between memory segments, or if the range isn’t perfectly aligned.
 
+## TODO
