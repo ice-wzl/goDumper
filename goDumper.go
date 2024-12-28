@@ -19,7 +19,7 @@ func getMaps(port string) []string {
 
 	file, err := os.OpenFile(memFile, os.O_RDONLY, 0644)
 	if err != nil {
-		fmt.Println("[!] Error opening file:", memFile)
+		fmt.Printf("\r[!] Error opening file: %v\r\n", memFile)
 		os.Exit(1)
 	}
 	defer file.Close()
@@ -66,7 +66,7 @@ func doDump(memStart int64, memEnd int64, pid int) {
 	pwd, err := os.Getwd()
 
 	if err != nil {
-		fmt.Println("[!] Failed to get pwd:", err)
+		fmt.Printf("\r[!] Failed to get pwd: %v\r\n", err)
 		os.Exit(1)
 	}
 
@@ -74,21 +74,21 @@ func doDump(memStart int64, memEnd int64, pid int) {
 
 	outFile, err := os.OpenFile(outputName, os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
-		fmt.Println("[!] Failed to create dumpfile:", err)
+		fmt.Printf("\r[!] Failed to create dumpfile: %v\r\n", err)
 		os.Exit(1)
 	}
 	defer outFile.Close()
 
 	memFile, err := os.OpenFile(memFileName, os.O_RDONLY, 0)
 	if err != nil {
-		fmt.Println("[!] Failed to open memFile:", memFile)
-		fmt.Println("\t--> Are you the root user...")
+		fmt.Printf("\r[!] Failed to open memFile: %v\r\n", memFile)
+		fmt.Printf("\t--> Are you the root user...\r\n")
 		os.Exit(1)
 	}
 
 	_, err = memFile.Seek(memStart, io.SeekStart)
 	if err != nil {
-		fmt.Println("[!] Failed to seek to file start:", err)
+		fmt.Printf("\r[!] Failed to seek to file start: %v\r\n", err)
 		os.Exit(1)
 	}
 
@@ -106,13 +106,13 @@ func doDump(memStart int64, memEnd int64, pid int) {
 		n, err := memFile.Read(buffer[:bytesToRead])
 		if err != nil && err != io.EOF {
 
-			fmt.Printf("[!] Skipping, failed to read memory: %x-%x: %v\n", memStart, memEnd, err)
+			fmt.Printf("\r[!] Skipping, failed to read memory: %x-%x: %v\r\n", memStart, memEnd, err)
 			return
 		}
 
 		// Write the buffer content to the output file
 		if _, err := outFile.Write(buffer[:n]); err != nil {
-			fmt.Printf("[!] Failed to write to output file: %v\n", err)
+			fmt.Printf("\r[!] Failed to write to output file: %v\r\n", err)
 			return
 		}
 
@@ -125,18 +125,18 @@ func doDump(memStart int64, memEnd int64, pid int) {
 
 func main() {
 
-	pid := flag.String("p", "", "The pid of the process to memory dump")
-	singleShotRange := flag.String("r", "", "[Optional] The single memory range to target -> 77535b8d5000-77535b8d7000")
+	pid := flag.String("p", "", "The pid of the process to memory dump\r\n")
+	singleShotRange := flag.String("r", "", "[Optional] The single memory range to target -> 77535b8d5000-77535b8d7000\r\n")
 	flag.Parse()
-	fmt.Println("[+] goDumper started")
+	fmt.Printf("\r[+] goDumper started\r\n")
 
 	if *pid == "" {
-		fmt.Println("[!] PID must be specified in order to dump process memory")
+		fmt.Printf("\r[!] PID must be specified in order to dump process memory\r\n")
 		flag.Usage()
 		os.Exit(1)
 	}
 
-	fmt.Println("[+] Target PID:", *pid)
+	fmt.Printf("\r[+] Target PID: %v\r\n", *pid)
 
 	// full memory dump of the target pid
 	if *pid != "" && *singleShotRange == "" {
@@ -145,7 +145,7 @@ func main() {
 
 		pidInt, err := strconv.Atoi(*pid)
 		if err != nil {
-			fmt.Println("[!] Error converting target pid to int:", err)
+			fmt.Printf("\r[!] Error converting target pid to int: %v\r\n", err)
 			os.Exit(1)
 		}
 
@@ -154,16 +154,16 @@ func main() {
 			doDump(memStart, memEnd, pidInt)
 
 		}
-		fmt.Println("[+] Successful memory dump for pid:", pidInt)
+		fmt.Printf("\r[+] Successful memory dump for pid: %v\r\n", pidInt)
 	} else if *pid != "" && *singleShotRange != "" {
 		pidInt, err := strconv.Atoi(*pid)
 		if err != nil {
-			fmt.Println("[!] Error converting target pid to int:", err)
+			fmt.Printf("\r[!] Error converting target pid to int: %v\r\n", err)
 			os.Exit(1)
 		}
 		memStart, memEnd := getStartStop(*singleShotRange)
 		doDump(memStart, memEnd, pidInt)
-		fmt.Println("[+] Successful memory dump for pid:", pidInt)
+		fmt.Printf("\r[+] Successful memory dump for pid: %v\r\n", pidInt)
 	}
 
 }
