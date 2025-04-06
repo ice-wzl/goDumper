@@ -22,9 +22,17 @@ jobs:
         go-version: '1.20'
 
     - name: Build
-      run: go build -o go-Dumper-x64 goDumper.go 
+      run: go build -o goDumper-x64 goDumper.go 
     - name: Upload compiled binary
       uses: actions/upload-artifact@v4
       with:
         name: goDumper-x64
         path: ./goDumper-x64
+
+    - name: Build
+      run: GOARCH=mips GOOS=linux go build -o goDumper-mips goDumper.go 
+    - name: Upload compiled binary
+      uses: actions/upload-artifact@v4
+      with:
+        name: goDumper-mips
+        path: ./goDumper-mips
