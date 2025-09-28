@@ -22,7 +22,7 @@ jobs:
         go-version: '1.20'
 
     - name: Build
-      run: go build -o goDumper-x64 goDumper.go 
+      run: CGO_ENABLED=0 go build -o goDumper-x64 goDumper.go 
     - name: Upload compiled binary
       uses: actions/upload-artifact@v4
       with:
@@ -30,7 +30,7 @@ jobs:
         path: ./goDumper-x64
 
     - name: Build
-      run: GOARCH=mips GOOS=linux go build -o goDumper-mips goDumper.go 
+      run: CGO_ENABLED=0 GOARCH=mips GOOS=linux go build -o goDumper-mips goDumper.go 
     - name: Upload compiled binary
       uses: actions/upload-artifact@v4
       with:
@@ -38,7 +38,7 @@ jobs:
         path: ./goDumper-mips
 
     - name: Build
-      run: GOARCH=mipsle GOOS=linux go build -o goDumper-mipsle goDumper.go 
+      run: CGO_ENABLED=0 GOARCH=mipsle GOOS=linux go build -o goDumper-mipsle goDumper.go 
     - name: Upload compiled binary
       uses: actions/upload-artifact@v4
       with:
@@ -46,7 +46,7 @@ jobs:
         path: ./goDumper-mipsle
 
     - name: Build
-      run: GOARCH=arm64 GOOS=linux go build -o goDumper-arm64 goDumper.go 
+      run: CGO_ENABLED=0 GOARCH=arm64 GOOS=linux go build -o goDumper-arm64 goDumper.go 
     - name: Upload compiled binary
       uses: actions/upload-artifact@v4
       with:
@@ -54,7 +54,7 @@ jobs:
         path: ./goDumper-arm64
 
     - name: Build
-      run: GOARCH=arm GOOS=linux go build -o goDumper-arm goDumper.go 
+      run: CGO_ENABLED=0 GOARCH=arm GOOS=linux go build -o goDumper-arm goDumper.go 
     - name: Upload compiled binary
       uses: actions/upload-artifact@v4
       with:
@@ -62,7 +62,7 @@ jobs:
         path: ./goDumper-arm
 
     - name: Build
-      run: GOARCH=386 GOOS=linux go build -o goDumper-386 goDumper.go 
+      run: CGO_ENABLED=0 GOARCH=386 GOOS=linux go build -o goDumper-386 goDumper.go 
     - name: Upload compiled binary
       uses: actions/upload-artifact@v4
       with:
@@ -70,7 +70,7 @@ jobs:
         path: ./goDumper-386
 
     - name: Build
-      run: GOARCH=ppc64le GOOS=linux go build -o goDumper-ppc64le goDumper.go 
+      run: CGO_ENABLED=0 GOARCH=ppc64le GOOS=linux go build -o goDumper-ppc64le goDumper.go 
     - name: Upload compiled binary
       uses: actions/upload-artifact@v4
       with:
@@ -78,7 +78,7 @@ jobs:
         path: ./goDumper-ppc64le
 
     - name: Build
-      run: GOARCH=ppc64 GOOS=linux go build -o goDumper-ppc64 goDumper.go 
+      run: CGO_ENABLED=0 GOARCH=ppc64 GOOS=linux go build -o goDumper-ppc64 goDumper.go 
     - name: Upload compiled binary
       uses: actions/upload-artifact@v4
       with:
@@ -86,7 +86,7 @@ jobs:
         path: ./goDumper-ppc64
 
     - name: Build
-      run: GOARCH=mips64le GOOS=linux go build -o goDumper-mips64le goDumper.go 
+      run: CGO_ENABLED=0 GOARCH=mips64le GOOS=linux go build -o goDumper-mips64le goDumper.go 
     - name: Upload compiled binary
       uses: actions/upload-artifact@v4
       with:
@@ -94,7 +94,7 @@ jobs:
         path: ./goDumper-mips64le
 
     - name: Build
-      run: GOARCH=mips64 GOOS=linux go build -o goDumper-mips64 goDumper.go 
+      run: CGO_ENABLED=0 GOARCH=mips64 GOOS=linux go build -o goDumper-mips64 goDumper.go 
     - name: Upload compiled binary
       uses: actions/upload-artifact@v4
       with:
